@@ -1,11 +1,25 @@
+import {useState, useEffect} from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = (props) => {
+  // const { location: {query}} = props;
+  console.log('111', props)
+  const [num, setNum] = useState(0);
+
+  useEffect(() => {
+    setNum(1);
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <div>{num}</div>
+        <button onClick={() => {
+          let newNum = num+1;
+          setNum(newNum);
+        }}>add</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
