@@ -1,25 +1,28 @@
-import {useState, useEffect} from 'react'
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
 
 const App = (props) => {
   // const { location: {query}} = props;
-  console.log('111', props)
+  const { someProp } = props;
+  console.log("111", props);
   const [num, setNum] = useState(0);
 
   useEffect(() => {
     setNum(1);
-  }, [])
+  }, []);
 
   return (
     <div className="App">
+      {someProp}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <div>{num}</div>
-        <button onClick={() => {
-          let newNum = num+1;
-          setNum(newNum);
-        }}>add</button>
+        <button
+          onClick={() => {
+            let newNum = num + 1;
+            setNum(newNum);
+          }}
+        >
+          add
+        </button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -34,6 +37,6 @@ const App = (props) => {
       </header>
     </div>
   );
-}
+};
 
 export default App;
