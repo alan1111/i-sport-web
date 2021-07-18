@@ -8,7 +8,7 @@ const Discern = (props) => {
   
   return (
     <div className={preCls}>
-      test home 
+      test home ttt
     </div>
   );
 };
