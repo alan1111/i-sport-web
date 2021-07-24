@@ -1,10 +1,14 @@
-import { Discern, Home, App } from "./pages";
+import { Login, Discern, Home, App } from "./pages";
 
 const routes = [
   {
     path: "/",
     component: Home,
     exact: true,
+  },
+  {
+    path: "/login",
+    component: Login,
   },
   {
     path: "/discern",
