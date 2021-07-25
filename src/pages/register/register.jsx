@@ -9,11 +9,14 @@ import {
   tailFormItemLayout,
 } from "./constant";
 
+import { addUser } from '../fetch'
+
 const Register = (props) => {
   const { name, phone } = regMapping;
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log("Received values of form: ", values);
-    props.history.push("/");
+    const res = await addUser(values);
+    // props.history.push("/");
   };
   return (
     <div className={preCls}>
@@ -51,15 +54,15 @@ const Register = (props) => {
               message: "请输入您的姓名",
               whitespace: true,
             },
-            () => ({
-              validator(_, value) {
-                if (!value || name.test(value)) {
-                  return Promise.resolve();
-                }
+            // () => ({
+            //   validator(_, value) {
+            //     if (!value || name.test(value)) {
+            //       return Promise.resolve();
+            //     }
 
-                return Promise.reject(new Error("请输入正确的姓名"));
-              },
-            }),
+            //     return Promise.reject(new Error("请输入正确的姓名"));
+            //   },
+            // }),
           ]}
         >
           <Input placeholder="请输入您的姓名" />
@@ -73,15 +76,15 @@ const Register = (props) => {
               required: true,
               message: "请输入您的手机号",
             },
-            () => ({
-              validator(_, value) {
-                if (!value || phone.test(value)) {
-                  return Promise.resolve();
-                }
+            // () => ({
+            //   validator(_, value) {
+            //     if (!value || phone.test(value)) {
+            //       return Promise.resolve();
+            //     }
 
-                return Promise.reject(new Error("请输入正确的手机号"));
-              },
-            }),
+            //     return Promise.reject(new Error("请输入正确的手机号"));
+            //   },
+            // }),
           ]}
         >
           <Input placeholder="请输入您的手机号" />

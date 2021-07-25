@@ -1,7 +1,7 @@
 import axios from "axios";
 
-axios.defaults.timeout = 100000;
-axios.defaults.baseURL = "http://test.isports.com/";
+axios.defaults.timeout = 5000;
+axios.defaults.baseURL = "http://localhost:3001";
 
 /**
  * http request 拦截器
