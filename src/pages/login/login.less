@@ -1,0 +1,42 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+
+  @media screen and (max-width: 760px) {
+    justify-content: space-around;
+  }
+
+  &-wx {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: 760px) {
+      margin-right: 100px;
+    }
+
+    @media screen and (max-width: 760px) {
+      margin-bottom: 20px;
+    }
+
+    &-img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+}
