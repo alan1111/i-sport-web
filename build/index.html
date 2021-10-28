@@ -40,6 +40,16 @@
         background-color: skyblue;
         cursor: pointer;
       }
+      .container2 {
+        padding: 40px 0;
+        background: red;
+        color: #fff;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
@@ -58,63 +68,100 @@
         <div class="block9 block">空气净化机</div>
       </div>
     </div>
-    <script>
-      const getCalculatePx = (rVal) => {
-        const rem = Math.min(
-          640,
-          Math.max(document.documentElement.clientWidth, 320),
-        );
-        return (rVal * rem) / 750;
-      };
-      const el = document.querySelector('.container');
-      el.style.width = `${getCalculatePx(700)}px`;
-      el.style.height = `${getCalculatePx(700)}px`;
-      let blocks = document.getElementsByClassName("block");
-      // 数组存放的是盒子的下标，按照顺时针的顺序
-      let arr = [0, 1, 2, 5, 8, 7, 6, 3],
-        i = 0,
-        count = 0,
-        stopTimer;
-      let rand = Math.floor(Math.random() * 8 + 50); // 给出一个停止计时器的随机数 count的值等于这个随机数时停止计时器
-      let around = function () {
-        // 将其他盒子都变为白色
-        for (let j = 0; j < arr.length; j++) {
-          blocks[arr[j]].style.background = "white";
-        }
-        // 这里blocks的取值为 blocks[0] blocks[1] blocks[2] blocks[5] blocks[8] blocks[7] blocks[6] blocks[3]
-        // 将当前arr[i]值所对应的盒子修改为粉色
-        blocks[arr[i]].style.background = "pink";
-        i++;
-        // 重制i的值
-        if (i === arr.length) {
-          i = 0;
-        }
-        count++; // count是一个计数器 根据count的值来调整速度
-        // 下面的4个if根据count的值来关闭计时器和重启计时器 改变计时器的时间间隔
-        if (count === 5 || count === 45) {
-          clearInterval(stopTimer);
-          stopTimer = setInterval(around, 200);
-        }
-        if (count === 10 || count === 35) {
-          clearInterval(stopTimer);
-          stopTimer = setInterval(around, 100);
-        }
-        if (count === 15) {
-          clearInterval(stopTimer);
-          stopTimer = setInterval(around, 50);
-        }
-        // 当等于上面的随机数时，停止计时器
-        if (count === rand) {
-          clearInterval(stopTimer);
-        }
-      };
-      // 给开始按钮绑定点击事件 点击后执行 around
-      let start = function () {
-        count = 0;
-        // blocks[4].removeEventListener("click", start); // 当用户点击了开始按钮后 必须要移除该事件 防止用户重复点击
-        stopTimer = setInterval(around, 300);
-      };
-      blocks[4].addEventListener("click", start);
-    </script>
+    <div class="container2"></div>
+    <button class="btn2" onclick="start2()">开始抽奖2</button>
   </body>
+  <script>
+    const getCalculatePx = (rVal) => {
+      const rem = Math.min(
+        640,
+        Math.max(document.documentElement.clientWidth, 320)
+      );
+      return (rVal * rem) / 750;
+    };
+  </script>
+  <script>
+    var list = [
+      "张三 166****4444",
+      "李四 1233****4555",
+      "张三1 166****4444",
+      "李四1 1233****4555",
+      "张三2 166****4444",
+      "李四2 1233****4555",
+      "张三3 166****4444",
+      "李四3 1233****4555",
+      "张三4 166****4444",
+      "李四4 1233****4555",
+    ];
+    // 抽奖个数
+    const start2 = (num) => {
+      const inter = setInterval(() => {
+        const rand = Math.random() * list.length;
+        const finalIndex = Math.floor(rand - 2 > 0 ? rand - 2 : rand);
+        document.querySelector(".container2").innerHTML = `<h2>${
+          list[finalIndex]
+        }</h2><h2>${list[finalIndex + 1]}</h2><h2>${list[finalIndex + 2]}</h2>`;
+      }, 100);
+      const timeout = setTimeout(() => {
+        clearInterval(inter);
+        clearTimeout(timeout);
+        const rand = Math.random() * list.length;
+        const finalIndex = Math.floor(rand - 2 > 0 ? rand - 2 : rand);
+        document.querySelector(".container2").innerHTML = `<h2>${
+          list[finalIndex]
+        }</h2><h2>${list[finalIndex + 1]}</h2><h2>${list[finalIndex + 2]}</h2>`;
+      }, 3000);
+    };
+  </script>
+  <script>
+    const el = document.querySelector(".container");
+    el.style.width = `${getCalculatePx(700)}px`;
+    el.style.height = `${getCalculatePx(700)}px`;
+    let blocks = document.getElementsByClassName("block");
+    // 数组存放的是盒子的下标，按照顺时针的顺序
+    let arr = [0, 1, 2, 5, 8, 7, 6, 3],
+      i = 0,
+      count = 0,
+      stopTimer;
+    let rand = Math.floor(Math.random() * 8 + 50); // 给出一个停止计时器的随机数 count的值等于这个随机数时停止计时器
+    let around = function () {
+      // 将其他盒子都变为白色
+      for (let j = 0; j < arr.length; j++) {
+        blocks[arr[j]].style.background = "white";
+      }
+      // 这里blocks的取值为 blocks[0] blocks[1] blocks[2] blocks[5] blocks[8] blocks[7] blocks[6] blocks[3]
+      // 将当前arr[i]值所对应的盒子修改为粉色
+      blocks[arr[i]].style.background = "pink";
+      i++;
+      // 重制i的值
+      if (i === arr.length) {
+        i = 0;
+      }
+      count++; // count是一个计数器 根据count的值来调整速度
+      // 下面的4个if根据count的值来关闭计时器和重启计时器 改变计时器的时间间隔
+      if (count === 5 || count === 45) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(around, 200);
+      }
+      if (count === 10 || count === 35) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(around, 100);
+      }
+      if (count === 15) {
+        clearInterval(stopTimer);
+        stopTimer = setInterval(around, 50);
+      }
+      // 当等于上面的随机数时，停止计时器
+      if (count === rand) {
+        clearInterval(stopTimer);
+      }
+    };
+    // 给开始按钮绑定点击事件 点击后执行 around
+    let start = function () {
+      count = 0;
+      // blocks[4].removeEventListener("click", start); // 当用户点击了开始按钮后 必须要移除该事件 防止用户重复点击
+      stopTimer = setInterval(around, 300);
+    };
+    blocks[4].addEventListener("click", start);
+  </script>
 </html>
